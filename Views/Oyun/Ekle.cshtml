@@ -1,8 +1,36 @@
 ﻿@using EntityLayer;
+@model Oyun;
 @{
     ViewData["Title"] = "Ekle";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
+<div class="p-2">
+    <h3>Oyun Ekle</h3>
+    @using (Html.BeginForm("Ekle", "Oyun", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.Label("Oyun Adı")
+        @Html.TextBoxFor(oyun=>oyun.OyunAd,new { @class = "form-control" })
+        @Html.ValidationMessageFor(oyun=>oyun.OyunAd,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Sure")
+        @Html.TextBoxFor(oyun=>oyun.Sure,new { @class = "form-control" })
+        @Html.ValidationMessageFor(oyun=>oyun.Sure,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Konu")
+        @Html.TextBoxFor(oyun=>oyun.Konu,new { @class = "form-control" })
+        @Html.ValidationMessageFor(oyun=>oyun.Konu,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Afis")
+        @Html.TextBoxFor(oyun=>oyun.Afis,new { @class = "form-control" })
+        @Html.ValidationMessageFor(oyun=>oyun.Afis,"",new { @class ="text-danger" })
+        @Html.Label("Durum")
+        <select class="form-control" name="silindi">
+            <option>False</option>
+            <option>True</option>
+        </select>
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="Ekle" />
+    }
+</div>
 
 

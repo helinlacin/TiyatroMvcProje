@@ -1,8 +1,45 @@
 ﻿@using EntityLayer;
+@model Oyun;
 @{
     ViewData["Title"] = "Guncelle";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
+<div class="p-2">
+    <h3>Firma Guncelle</h3>
+    @using (Html.BeginForm("Guncelle", "Oyun", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.TextBoxFor(oyun=>oyun.OyunId,new { @class = "form-control",@name="OyunId",@value="@Model.OyunId",@type="hidden"})
+        @Html.Label("Oyun Adı")
+        @Html.TextBoxFor(oyun=>oyun.OyunAd,new { @class = "form-control",@name="OyunAd",@value="@Model.OyunAd" })
+        @Html.ValidationMessageFor(oyun=>oyun.OyunAd,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Sure")
+        @Html.TextBoxFor(oyun=>oyun.Sure,new { @class = "form-control",@name="Sure",@value="@Model.Sure" })
+        @Html.ValidationMessageFor(oyun=>oyun.Sure,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Konu")
+        @Html.TextBoxFor(oyun=>oyun.Konu,new { @class = "form-control",@name="Konu",@value="@Model.Konu" })
+        @Html.ValidationMessageFor(oyun=>oyun.Konu,"",new { @class ="text-danger" })
+        <br />
+         @Html.Label("Afis")
+        @Html.TextBoxFor(oyun=>oyun.Afis,new { @class = "form-control",@name="Afis",@value="@Model.Afis" })
+        @Html.ValidationMessageFor(oyun=>oyun.Afis,"",new { @class ="text-danger" })
+        @Html.Label("Durum")
+        <select class="form-control" name="silindi">
+            if (Model.silindi)
+            {
+            <option selected>True</option>
+            <option>False</option>
+            }
+            else
+            {
+            <option>True</option>
+            <option selected>False</option>
+            }
+        </select>
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="Oyun Güncelle" />
+    }
+</div>
 
 
