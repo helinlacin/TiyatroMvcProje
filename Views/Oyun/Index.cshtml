@@ -1,9 +1,75 @@
 ﻿@using EntityLayer;
+@model List<Oyun>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<table class="table">
+    <thead>
+        <tr>
+            <th>Oyun Adı</th>
+            <th>Süre</th>
+            <th>Konu</th>
+            <th>Afis</th>
+            <th>Durum</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.OyunAd</td>
+                <td>@item.Sure</td>
+                <td>@item.Konu</td>
+                <td>@item.Afis</td>
+                <td>@item.OyunSilindi</td>
+                <td>
+                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.OyunId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><i class="fas fa-trash"></i> </button>
+                </td>
+                <td><a href="/Oyun/Guncelle/@item.OyunId" type="button" class="btn btn-outline-primary p-2 ">Güncelle</a></td>
+            </tr>
+        }
 
+    </tbody>
+</table>
+<div class="text-center d-flex justify-content-start p-2">
+    <a href="/Oyun/Ekle" class="btn btn-success"><ion-icon name="add" style=" font-size:30px;"></ion-icon></a>
+</div>
+
+
+<!-- Modal -->
+@*#decisionPopup Model*@
+<div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="silLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="silLabel">Uyarı</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Silmek istediğinizden emin misiniz?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hayır</button>
+                <a id="delete-btn" href="" class="btn btn-success">Evet</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#decisionPopup').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var oyunId = button.attr('data-bs-whatever');
+            console.log(oyunId
+            var a = document.querySelector("#delete-btn");
+            a.href = "/Oyun/Sil/" + oyunId;
+        });
+    });
+</script>
 

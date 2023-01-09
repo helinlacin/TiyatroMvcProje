@@ -1,8 +1,67 @@
 ﻿@using EntityLayer;
+@model Musteri;
 @{
     ViewData["Title"] = "Ekle";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
+<div class="p-2">
+    <h2>Musteri Ekle</h2><br />
+    @using (Html.BeginForm("Ekle", " Musteri", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.Label("Kullanici Adı")
+        @Html.TextBoxFor( Musteri=> Musteri.KullaniciAd,new { @class = "form-control" })
+        @Html.ValidationMessageFor(Musteri=> Musteri.KullaniciAd,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Kullanici Şifre")
+        @Html.TextBoxFor(Musteri=> Musteri.KullaniciSifre,new { @class = "form-control" })
+        @Html.ValidationMessageFor(Musteri=> Musteri.KullaniciSifre,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Ad")
+        @Html.TextBoxFor(Musteri=> Musteri.Ad,new { @class = "form-control" })
+        @Html.ValidationMessageFor(Musteri=> Musteri.Ad,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Soyad")
+        @Html.TextBoxFor(Musteri=> Musteri.Soyad,new { @class = "form-control" })
+        @Html.ValidationMessageFor(Musteri=> Musteri.Soyad,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Doğum Tarihi")
+        @Html.TextBoxFor(Musteri=> Musteri.DogumTarihi,new { @class = "form-control" })
+        @Html.ValidationMessageFor(Musteri=> Musteri.DogumTarihi,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Tc Kimlik No")
+        @Html.TextBoxFor(Musteri=>Musteri.Tc,new { @class = "form-control" })
+        @Html.ValidationMessageFor(Musteri=>Musteri.Tc,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("E-Mail")
+        @Html.TextBoxFor(Musteri=>Musteri.Mail,new { @class = "form-control" })
+        @Html.ValidationMessageFor(Musteri=>Musteri.Mail,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Musteri Türü")
+        <select class="form-control" name="Musteri Türü">
+            <option>False</option>
+            <option>True</option>
+        </select>
+             <br />
+        @Html.Label("Cinsiyet")
+        <select class="form-control" name="cinsiyet">
+            <option>False</option>
+            <option>True</option>
+        </select>
+        <br />
+        @Html.Label("Telefon Numarası")
+        @Html.TextBoxFor(Musteri=>Musteri.Tel,new { @class = "form-control" })
+        @Html.ValidationMessageFor(Musteri=>Musteri.Tel,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Durum")
+        <select class="form-control" name="MusteriSilindi">
+            <option>False</option>
+            <option>True</option>
+        </select>
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="Musteri Ekle" />
+    }
+</div>
 
 
 

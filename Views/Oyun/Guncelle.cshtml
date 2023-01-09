@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="p-2">
-    <h3>Firma Guncelle</h3>
+    <h3>Oyun Guncelle</h3>
     @using (Html.BeginForm("Guncelle", "Oyun", FormMethod.Post, new { @class = "form-group" }))
     {
         @Html.TextBoxFor(oyun=>oyun.OyunId,new { @class = "form-control",@name="OyunId",@value="@Model.OyunId",@type="hidden"})

@@ -1,8 +1,70 @@
 ﻿@using EntityLayer;
+@model List<OyunKadrosu>;
  
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<table class="table">
+    <thead>
+        <tr>
+            <th>Yazan</th>
+            <th>Yönetmen</th>
+            <th>Oyuncular</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Yazan</td>
+                <td>@item.Yönetmen</td>
+                <td>@item.Oyuncular</td>
+               
+                <td>
+                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.OyunKadrosuId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><i class="fas fa-trash"></i> </button>
+                </td>
+                <td><a href="/OyunKadrosu/Guncelle/@item.OyunKadrosuId" type="button" class="btn btn-outline-primary p-2 ">Güncelle</a></td>
+            </tr>
+        }
 
+    </tbody>
+</table>
+<div class="text-center d-flex justify-content-start p-2">
+    <a href="/OyunKadrosu/Ekle" class="btn btn-success"><ion-icon name="add" style=" font-size:30px;"></ion-icon></a>
+</div>
+
+
+<!-- Modal -->
+@*#decisionPopup Model*@
+<div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="silLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="silLabel">Uyarı</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Silmek istediğinizden emin misiniz?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hayır</button>
+                <a id="delete-btn" href="" class="btn btn-success">Evet</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#decisionPopup').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var OyunKadrosuId = button.attr('data-bs-whatever');
+            console.log(OyunKadrosuId);
+            var a = document.querySelector("#delete-btn");
+            a.href = "/OyunKadrosu/Sil/" + OyunKadrosuId;
+        });
+    });
+</script>

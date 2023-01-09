@@ -1,8 +1,77 @@
 ﻿@using EntityLayer;
+@model Musteri
 @{
     ViewData["Title"] = "Guncelle";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<div class="p-2">
+    <h2>Musteri Güncelle</h2><br />
+    @using (Html.BeginForm("Guncelle", "Musteri", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.TextBoxFor(Musteri=> Musteri.MusteriId,new { @class = "form-control",@name="MusteriId",@value="@Model.Musteri=> MusteriId",@type="hidden"})
+        @Html.Label("Kullanici Adı")
+        @Html.TextBoxFor(Musteri=> Musteri.KullaniciAd,new { @class = "form-control",@name="KullaniciAd",@value="@Model.KullaniciAd" })
+        @Html.ValidationMessageFor(Musteri=> Musteri.KullaniciAd,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Kullanici Şifre")
+        @Html.TextBoxFor(Musteri=> Musteri.KullaniciSifre,new { @class = "form-control",@name="KullaniciSifre",@value="@Model.KullaniciSifre" })
+        @Html.ValidationMessageFor(Musteri=> Musteri.KullaniciSifre,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Ad")
+        @Html.TextBoxFor(Musteri=> Musteri.Ad,new { @class = "form-control",@name="Ad",@value="@Model.Ad" })
+        @Html.ValidationMessageFor(Musteri=> Musteri.Ad,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Soyad")
+        @Html.TextBoxFor(Musteri=> Musteri.Soyad,new { @class = "form-control",@name="Soyad",@value="@Model.Soyad" } )
+        @Html.ValidationMessageFor(Musteri=> Musteri.Soyad,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Doğum Tarihi")
+        @Html.TextBoxFor(Musteri=> Musteri.DogumTarihi,new { @class = "form-control",@name="DogumTarihi",@value="@Model.DogumTarihi" } )
+        @Html.ValidationMessageFor(Musteri=> Musteri.DogumTarihi,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Tc Kimlik No")
+        @Html.TextBoxFor(Musteri=> Musteri.Tc,new { @class = "form-control",@name="Tc",@value="@Model.Tc" } )
+        @Html.ValidationMessageFor(Musteri=> Musteri.Tc,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("E-Mail")
+        @Html.TextBoxFor(Musteri=> Musteri.Mail,new { @class = "form-control",@name="Mail",@value="@Model.Mail" } )
+        @Html.ValidationMessageFor(Musteri=> Musteri.Mail,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Cinsiyet")
+        <select class="form-control" name="Cinsiyet">
+            @if (Model.Cinsiyet)
+            {
+                <option selected>True</option>
+                <option>False</option>
+            }
+            else
+            {
+                <option>True</option>
+                <option selected>False</option>
+            }
+        </select>
+        <br />
+        @Html.Label("Telefon Numarası")
+        @Html.TextBoxFor(Musteri=> Musteri.Tel,"",new { @class = "form-control" })
+        @Html.ValidationMessageFor(Musteri=> Musteri.Tel,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Durum")
+        <select class="form-control" name="MusteriSilindi">
+            @if (Model.MusteriSilindi)
+            {
+                <option selected>True</option>
+                <option>False</option>
+            }
+            else
+            {
+                <option>True</option>
+                <option selected>False</option>
+            }
+        </select>
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="Musteri Güncelle" />
+    }
+</div>
 
 
 
