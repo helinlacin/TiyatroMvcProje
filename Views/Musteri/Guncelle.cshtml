@@ -37,18 +37,21 @@
         @Html.TextBoxFor(Musteri=> Musteri.Mail,new { @class = "form-control",@name="Mail",@value="@Model.Mail" } )
         @Html.ValidationMessageFor(Musteri=> Musteri.Mail,"",new { @class ="text-danger" })
         <br />
+        @Html.Label("MüsteriTürü")
+        <select class="form-control" name="MusteriTuru">
+            
+            <option value="True">Tam</option>
+            <option value="False">Öğrenci</option>
+            
+            
+        </select>
+        <br />
         @Html.Label("Cinsiyet")
         <select class="form-control" name="Cinsiyet">
-            @if (Model.Cinsiyet)
-            {
-                <option selected>True</option>
-                <option>False</option>
-            }
-            else
-            {
-                <option>True</option>
-                <option selected>False</option>
-            }
+           
+                <option value="True">Kadın</option>
+                <option value="False">Erkek</option>
+           
         </select>
         <br />
         @Html.Label("Telefon Numarası")

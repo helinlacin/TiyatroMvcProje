@@ -9,15 +9,16 @@
     <thead>
         <tr>
             <th>Tur Adı</th>
-            <th></th>
-            <th></th>
+            <th>Durum</th>
+           
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.</td>
+                <td>@item.TurAd</td>
+                <td>@item.turSilindi</td>
                
                 
                 <td>

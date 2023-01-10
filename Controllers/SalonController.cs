@@ -43,7 +43,7 @@ namespace TiyatroProje.Controllers
         public IActionResult Sil(int id)
         {
             Salon salon = sm.SalonGetirById(id);
-            salon.biletSilindi = true;
+            salon.SalonSilindi = true;
             sm.SalonGuncelle(salon);
             return RedirectToAction("Index");
         }

@@ -4,6 +4,21 @@
     ViewData["Title"] = "Ekle";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
-
+<div class="p-2">
+    <h3>Bilet Ekle</h3>
+    @using (Html.BeginForm("Ekle", "OyunSalonMusteri", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.Label("Koltuk No")
+        @Html.TextBoxFor(OyunSalonMusteri=>OyunSalonMusteri.KoltukNo,new { @class = "form-control" })
+        @Html.ValidationMessageFor(OyunSalonMusteri=>OyunSalonMusteri.KoltukNo,"",new { @class ="text-danger" })
+        
+        @Html.Label("Durum")
+        <select class="form-control" name="silindi">
+            <option>False</option>
+            <option>True</option>
+        </select>
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="Ekle" />
+    }
+</div>
 

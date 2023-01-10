@@ -1,8 +1,29 @@
 ﻿@using EntityLayer;
+@model Salon
 @{
     ViewData["Title"] = "Guncelle";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<div class="p-2">
+    <h2>Salon Güncelle</h2><br />
+    @using (Html.BeginForm("Guncelle", "Salon", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.TextBoxFor(Salon=>Salon.SalonId,new { @class = "form-control",@name="SalonId",@value="@Model.SalonId",@type="hidden"})
+        @Html.Label("SalonNo")
+        @Html.TextBoxFor(Salon=>Salon.SalonNo,new { @class = "form-control",@name="SalonNo",@value="@Model.SalonNo" })
+        @Html.ValidationMessageFor(Salon=>Salon.SalonNo,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Konum")
+        @Html.TextBoxFor(Salon=>Salon.Konum,new { @class = "form-control",@name="Konum",@value="@Model.Konum" })
+        @Html.ValidationMessageFor(Salon=>Salon.Konum,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Kapasite")
+        @Html.TextBoxFor(Salon=>Salon.Kapasite,new { @class = "form-control",@name="Kapasite",@value="@Model.Kapasite" })
+        @Html.ValidationMessageFor(Salon=>Salon.Kapasite,"",new { @class ="text-danger" })
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="Salon Güncelle" />
+    }
+</div>
 
 
 
