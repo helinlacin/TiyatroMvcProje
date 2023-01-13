@@ -39,18 +39,31 @@
         <br />
         @Html.Label("MüsteriTürü")
         <select class="form-control" name="MusteriTuru">
-            
-            <option value="True">Tam</option>
-            <option value="False">Öğrenci</option>
-            
+            @if (Model.MusteriTuru)
+            {
+                <option value="True" selected>Tam</option>
+                <option value="False">Öğrenci</option>
+            }
+            else
+            {
+                <option value="True">Tam</option>
+                <option value="False" selected>Öğrenci</option>
+            }
             
         </select>
         <br />
         @Html.Label("Cinsiyet")
         <select class="form-control" name="Cinsiyet">
-           
-                <option value="True">Kadın</option>
-                <option value="False">Erkek</option>
+            @if (Model.Cinsiyet)
+            {
+                <option  value="True" selected>True</option>
+                <option value="False">False</option>
+            }
+            else
+            {
+                <option value="True">True</option>
+                <option value="False" selected>False</option>
+            }
            
         </select>
         <br />
