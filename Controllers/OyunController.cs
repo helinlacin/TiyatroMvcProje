@@ -3,12 +3,15 @@ using BusinessLayer.Validation;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
+using TiyatroProje.Models;
 
 namespace TiyatroProje.Controllers
 {
     public class OyunController : Controller
     {
         OyunManager om = new OyunManager(new EfOyunRepository());
+        TurManager tm= new TurManager(new EfTurRepository());
+        OyunKadrosuManager okm=new OyunKadrosuManager(new EfOyunKadrosuRepository());
         public IActionResult Index()
         {
             var oyunlar = om.OyunListele();
@@ -17,7 +20,11 @@ namespace TiyatroProje.Controllers
         [HttpGet]
         public IActionResult Ekle()
         {
-            return View();
+            OyunTurVeKadrosuModel model=new OyunTurVeKadrosuModel();
+            model.turModal=tm.TurListele();
+            model.oyunKadrosuModal=okm.OyunKadrosuListele();
+            
+            return View(model);
         }
         [HttpPost]
         public IActionResult Ekle(Oyun oyun)
@@ -32,11 +39,14 @@ namespace TiyatroProje.Controllers
             }
             else
             {
+                OyunTurVeKadrosuModel model = new OyunTurVeKadrosuModel();
+                model.turModal = tm.TurListele();
+                model.oyunKadrosuModal = okm.OyunKadrosuListele();
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                return View();
+                return View(model);
             }
 
         }
@@ -49,8 +59,11 @@ namespace TiyatroProje.Controllers
         }
         public IActionResult Guncelle(int id)
         {
-            Oyun oyun = om.OyunGetirById(id);
-            return View(oyun);
+            OyunTurVeKadrosuModel model = new OyunTurVeKadrosuModel();
+            model.turModal = tm.TurListele();
+            model.oyunKadrosuModal = okm.OyunKadrosuListele();
+            model.oyunModal = om.OyunGetirById(id);
+            return View(model);
         }
         [HttpPost]
         public IActionResult Guncelle(Oyun oyun)
@@ -65,11 +78,15 @@ namespace TiyatroProje.Controllers
             }
             else
             {
+                OyunTurVeKadrosuModel model = new OyunTurVeKadrosuModel();
+                model.turModal = tm.TurListele();
+                model.oyunKadrosuModal = okm.OyunKadrosuListele();
+                model.oyunModal = oyun;
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                return View();
+                return View(model);
             }
 
         }

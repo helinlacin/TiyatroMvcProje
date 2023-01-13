@@ -5,54 +5,57 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Musteriler</h2>
+<h2>Kullanıcılar</h2>
+
 
 <table class="table">
     <thead>
         <tr>
-            <th>MusteriId</th>
-            <th>KullanıcıAd</th>
-            <th>kullanıcıSifre</th>
+            <th>Kullanıcı Ad</th>
+            <th>Şifre</th>
             <th>Ad</th>
             <th>Soyad</th>
-            <th>DoğumTarihi</th>
+            <th>Doğum Tarihi</th>
             <th>Tc</th>
-            <th>Mail</th>
-            <th>MusteriTürü</th>
+            <th>E-Mail</th>
+            <th>Müşteri Türü</th>
             <th>Cinsiyet</th>
-            <th>Tel</th>
-            <th>Sil</th>
-            <th>Güncelle</th>
+            <th>Telefon</th>
+            <th>Durum</th>
+           
+
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.MusteriId</td>
                 <td>@item.KullaniciAd</td>
                 <td>@item.KullaniciSifre</td>
                 <td>@item.Ad</td>
                 <td>@item.Soyad</td>
-                <td>@item.DogumTarihi</td>
+                <td>@item.DogumTarihi.ToString().Split(" ")[0]</td>
                 <td>@item.Tc</td>
                 <td>@item.Mail</td>
-                    <td>@item.MusteriTuru</td>
-                    <td>@item.Cinsiyet</td>
+                <td>@item.MusteriTuru</td>
+                <td>@item.Cinsiyet</td>
                 <td>@item.Tel</td>
+                <td>@item.MusteriSilindi</td>
                 <td>
-                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.MusteriId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><i class="fas fa-trash"></i> </button>
+                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.MusteriId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><i class="fas fa-trash"></i></button>
                 </td>
-                <td><a href="/Musteri/Guncelle/@item.MusteriId" type="button" class="btn btn-outline-primary p-2 ">Güncelle</a></td>
+                <td><a href="/Musteri/Guncelle/@item.MusteriId" type="button" class="btn btn-outline-primary p-2">Güncelle</a></td>
             </tr>
+
         }
 
     </tbody>
 </table>
-<div class="text-center d-flex justify-content-start p-2">
-    <a href="/Musteri/Ekle" class="btn btn-success"><ion-icon name="add" style=" font-size:30px;"></ion-icon></a>
-</div>
 
+
+<div class="text-center d-flex justify-content-start p-2">
+    <a href="/Musteri/Ekle" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
+</div>
 
 <!-- Modal -->
 @*#decisionPopup Model*@
@@ -80,10 +83,11 @@
         $('#decisionPopup').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var MusteriId = button.attr('data-bs-whatever');
-            console.log(MusteriId);
+
             var a = document.querySelector("#delete-btn");
             a.href = "/Musteri/Sil/" + MusteriId;
         });
     });
 </script>
+
 

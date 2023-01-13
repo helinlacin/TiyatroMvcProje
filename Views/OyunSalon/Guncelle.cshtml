@@ -1,8 +1,38 @@
 ﻿@using EntityLayer;
+@model OyunSalon
 @{
     ViewData["Title"] = "Guncelle";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<div class="p-2">
+    <h3>Tur Guncelle</h3>
+    @using (Html.BeginForm("Guncelle", "Tur", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.TextBoxFor(OyunSalon=>OyunSalon.SeansId,new { @class = "form-control",@name="SeansId",@value="@Model.SeansId",@type="hidden"})
+        @Html.Label("Tarih")
+        @Html.TextBoxFor(OyunSalon=>OyunSalon.Tarih,new { @class = "form-control",@name="Tarih",@value="@Model.Tarih" })
+        @Html.ValidationMessageFor(OyunSalon=>OyunSalon.Tarih,"",new { @class ="text-danger" })
+        <br/>
+        @Html.Label("Saat")
+        @Html.TextBoxFor(OyunSalon=>OyunSalon.Saat,new { @class = "form-control",@name="Saat",@value="@Model.Saat" })
+        @Html.ValidationMessageFor(OyunSalon=>OyunSalon.Saat,"",new { @class ="text-danger" })
+        @Html.Label("Durum")
+        <select class="form-control" name="SeansSilindi">
+            @if (Model.SeansSilindi)
+            {
+                <option value="True" selected>True</option>
+                <option value="False">False</option>
+            }
+            else
+            {
+                <option value="True">True</option>
+                <option value="False" selected>False</option>
+            }
+        </select>
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="OyunSalon Güncelle" />
+    }
+</div>
 
 
 

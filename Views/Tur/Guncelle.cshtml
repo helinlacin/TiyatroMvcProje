@@ -13,16 +13,16 @@
         @Html.TextBoxFor(tur=>tur.TurAd,new { @class = "form-control",@name="TurAd",@value="@Model.TurAd" })
         @Html.ValidationMessageFor(tur=>tur.TurAd,"",new { @class ="text-danger" })
         @Html.Label("Durum")
-        <select class="form-control" name="silindi">
-            if (Model.silindi)
+        <select class="form-control" name="turSilindi">
+           @if (Model.turSilindi)
             {
-            <option selected>True</option>
-            <option>False</option>
+            <option value="True" selected>True</option>
+            <option value="False">False</option>
             }
             else
             {
-            <option>True</option>
-            <option selected>False</option>
+            <option value="True" >True</option>
+            <option value="False" selected>False</option>
             }
         </select>
         <br />

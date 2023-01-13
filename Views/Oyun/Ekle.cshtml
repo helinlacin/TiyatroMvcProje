@@ -1,5 +1,5 @@
-﻿@using EntityLayer;
-@model Oyun;
+﻿@using TiyatroProje.Models
+@model OyunTurVeKadrosuModel;
 @{
     ViewData["Title"] = "Ekle";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -9,20 +9,36 @@
     @using (Html.BeginForm("Ekle", "Oyun", FormMethod.Post, new { @class = "form-group" }))
     {
         @Html.Label("Oyun Adı")
-        @Html.TextBoxFor(oyun=>oyun.OyunAd,new { @class = "form-control" })
-        @Html.ValidationMessageFor(oyun=>oyun.OyunAd,"",new { @class ="text-danger" })
+        @Html.TextBoxFor(oyun=>oyun.oyunModal.OyunAd,new { @class = "form-control" })
+        @Html.ValidationMessageFor(oyun=>oyun.oyunModal.OyunAd,"",new { @class ="text-danger" })
         <br />
         @Html.Label("Sure")
-        @Html.TextBoxFor(oyun=>oyun.Sure,new { @class = "form-control" })
-        @Html.ValidationMessageFor(oyun=>oyun.Sure,"",new { @class ="text-danger" })
+        @Html.TextBoxFor(oyun=>oyun.oyunModal.Sure,new { @class = "form-control" })
+        @Html.ValidationMessageFor(oyun=>oyun.oyunModal.Sure,"",new { @class ="text-danger" })
         <br />
         @Html.Label("Konu")
-        @Html.TextBoxFor(oyun=>oyun.Konu,new { @class = "form-control" })
-        @Html.ValidationMessageFor(oyun=>oyun.Konu,"",new { @class ="text-danger" })
+        @Html.TextBoxFor(oyun=>oyun.oyunModal.Konu,new { @class = "form-control" })
+        @Html.ValidationMessageFor(oyun=>oyun.oyunModal.Konu,"",new { @class ="text-danger" })
         <br />
         @Html.Label("Afis")
-        @Html.TextBoxFor(oyun=>oyun.Afis,new { @class = "form-control" })
-        @Html.ValidationMessageFor(oyun=>oyun.Afis,"",new { @class ="text-danger" })
+        @Html.TextBoxFor(oyun=>oyun.oyunModal.Afis,new { @class = "form-control" })
+        @Html.ValidationMessageFor(oyun=>oyun.oyunModal.Afis,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("TurAdı")
+        <select class="form-control" name="TurId">
+            @foreach(var item in Model.turModal)
+            {
+                <option value="@item.TurId">@item.TurAd</option>
+            }
+        </select>
+            <br />
+        @Html.Label("Kadro")
+        <select class="form-control" name="OyunKadrosuId">
+            @foreach (var item in Model.oyunKadrosuModal)
+            {
+                    <option value="@item.OyunKadrosuId">@item.Oyuncular</option>
+            }
+        </select>
         @Html.Label("Durum")
         <select class="form-control" name="silindi">
             <option>False</option>

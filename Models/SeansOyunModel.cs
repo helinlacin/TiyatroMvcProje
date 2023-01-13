@@ -6,7 +6,7 @@ namespace TiyatroProje.Models
     {
         public OyunSalon SeansModal { get; set; }
         public IEnumerable<Oyun> OyunModal { get; set; }
-        public IEnumerable<Tur> TurModal { get; set; }
-        public IEnumerable<OyunKadrosu> OyunKadrosuModal { get; set; }
+        
+        
     }
 }

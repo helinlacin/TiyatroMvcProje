@@ -1,5 +1,5 @@
-﻿@using EntityLayer;
-@model Oyun;
+﻿@using TiyatroProje.Models
+@model OyunTurVeKadrosuModel;
 @{
     ViewData["Title"] = "Guncelle";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -8,22 +8,36 @@
     <h3>Oyun Guncelle</h3>
     @using (Html.BeginForm("Guncelle", "Oyun", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.TextBoxFor(oyun=>oyun.OyunId,new { @class = "form-control",@name="OyunId",@value="@Model.OyunId",@type="hidden"})
+        @Html.TextBoxFor(oyun=>oyun.oyunModal.OyunId,new { @class = "form-control",@name="OyunId",@value="@Model.OyunId",@type="hidden"})
         @Html.Label("Oyun Adı")
-        @Html.TextBoxFor(oyun=>oyun.OyunAd,new { @class = "form-control",@name="OyunAd",@value="@Model.OyunAd" })
-        @Html.ValidationMessageFor(oyun=>oyun.OyunAd,"",new { @class ="text-danger" })
+        @Html.TextBoxFor(oyun=>oyun.oyunModal.OyunAd,new { @class = "form-control",@name="OyunAd",@value="@Model.OyunAd" })
+        @Html.ValidationMessageFor(oyun=>oyun.oyunModal.OyunAd,"",new { @class ="text-danger" })
         <br />
         @Html.Label("Sure")
-        @Html.TextBoxFor(oyun=>oyun.Sure,new { @class = "form-control",@name="Sure",@value="@Model.Sure" })
-        @Html.ValidationMessageFor(oyun=>oyun.Sure,"",new { @class ="text-danger" })
+        @Html.TextBoxFor(oyun=>oyun.oyunModal.Sure,new { @class = "form-control",@name="Sure",@value="@Model.Sure" })
+        @Html.ValidationMessageFor(oyun=>oyun.oyunModal.Sure,"",new { @class ="text-danger" })
         <br />
         @Html.Label("Konu")
-        @Html.TextBoxFor(oyun=>oyun.Konu,new { @class = "form-control",@name="Konu",@value="@Model.Konu" })
-        @Html.ValidationMessageFor(oyun=>oyun.Konu,"",new { @class ="text-danger" })
+        @Html.TextBoxFor(oyun=>oyun.oyunModal.Konu,new { @class = "form-control",@name="Konu",@value="@Model.Konu" })
+        @Html.ValidationMessageFor(oyun=>oyun.oyunModal.Konu,"",new { @class ="text-danger" })
         <br />
          @Html.Label("Afis")
-        @Html.TextBoxFor(oyun=>oyun.Afis,new { @class = "form-control",@name="Afis",@value="@Model.Afis" })
-        @Html.ValidationMessageFor(oyun=>oyun.Afis,"",new { @class ="text-danger" })
+        @Html.TextBoxFor(oyun=>oyun.oyunModal.Afis,new { @class = "form-control",@name="Afis",@value="@Model.Afis" })
+        @Html.ValidationMessageFor(oyun=>oyun.oyunModal.Afis,"",new { @class ="text-danger" })
+        <br />
+        <select class="form-control" name="TurId">
+            @foreach(var item in Model.turModal)
+            {
+                @if(item.TurId==Model.oyunModal.TurId)
+                {
+                    <option value="@item.TurId" selected>@item.TurAd</option>
+                }
+                else
+                {
+                    <option value="@item.TurId">@item.TurAd</option>
+                }
+            }
+            </select>
         @Html.Label("Durum")
         <select class="form-control" name="silindi">
             if (Model.silindi)

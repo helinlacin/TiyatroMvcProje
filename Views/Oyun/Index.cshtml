@@ -13,6 +13,10 @@
             <th>Süre</th>
             <th>Konu</th>
             <th>Afis</th>
+            <th>Tür Adı</th>
+            <th>Oyuncular</th>
+            <th>Yazan</th>
+            <th>Yönetmen</th>
             <th>Durum</th>
             <th></th>
         </tr>
@@ -25,6 +29,10 @@
                 <td>@item.Sure</td>
                 <td>@item.Konu</td>
                 <td>@item.Afis</td>
+                <td>@item.Tur.TurAd</td>
+                <td>@item.OyunKadrosu.Oyuncular</td>
+                <td>@item.OyunKadrosu.Yazan</td>
+                <td>@item.OyunKadrosu.Yönetmen</td>
                 <td>@item.OyunSilindi</td>
                 <td>
                     <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.OyunId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><i class="fas fa-trash"></i> </button>

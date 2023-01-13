@@ -60,16 +60,10 @@
         <br />
         @Html.Label("Durum")
         <select class="form-control" name="MusteriSilindi">
-            @if (Model.MusteriSilindi)
-            {
+           
+            
                 <option selected>True</option>
                 <option>False</option>
-            }
-            else
-            {
-                <option>True</option>
-                <option selected>False</option>
-            }
         </select>
         <br />
         <input class="form-control btn btn-primary" type="submit" value="Musteri Güncelle" />
