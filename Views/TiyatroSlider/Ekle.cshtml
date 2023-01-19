@@ -1,8 +1,29 @@
-﻿
+﻿@using EntityLayer
+@model TiyatroSlider
 @{
     ViewData["Title"] = "Ekle";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Ekle</h1>
+<div class="p-2">
+    <h2>Ekle</h2>
+    @using (Html.BeginForm("Ekle", "TiyatroSlider", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.Label("Slider Adı")
+        @Html.TextBoxFor(TiyatroSlider=>TiyatroSlider.SliderName,new { @class = "form-control" })
+        @Html.ValidationMessageFor(TiyatroSlider=>TiyatroSlider.SliderName,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Resim Seç")
+        @Html.TextBoxFor(TiyatroSlider=>TiyatroSlider.ResimUrl, null, new { type="file", @class="form-control" })
+        @Html.ValidationMessageFor(TiyatroSlider=>TiyatroSlider.ResimUrl,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Silindi")
+        <select class="form-control" name="TiyatroSliderSilindi">
+            <option>False</option>
+            <option>True</option>
+        </select>
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="Ekle" />
+    }
+</div>
 
