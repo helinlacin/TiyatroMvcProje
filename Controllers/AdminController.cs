@@ -10,7 +10,26 @@ namespace TiyatroProje.Controllers
 {
     public class AdminController : Controller
     {
-        
+       
+       private readonly ILogger<AdminController> _logger;
+        private readonly IToastNotification _toastNotification;
+        public AdminController(IToastNotification toastNotification, ILogger<AdminController> logger)
+        {
+            _logger = logger;
+            _toastNotification = toastNotification;
+        }
+
+
+        [HttpGet]
+        public IActionResult login()
+        {
+            return View();
+
+        }
+        public IActionResult profile()
+        {
+            return View();
+        }
 
     }
 }
