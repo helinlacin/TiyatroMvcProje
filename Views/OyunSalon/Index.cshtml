@@ -13,6 +13,8 @@
         <tr>
             <th>Tarih</th>
             <th>Saat</th>
+            <th>OyunAd</th>
+            <th>SalonNo</th>
             <th>Durum</th>
 
 
@@ -24,6 +26,9 @@
             <tr>
                 <td>@item.Tarih.ToString().Split(" ")[0]</td>
                 <td>@item.Saat</td>
+                <td>@item.Oyun.OyunAd</td>
+                <td>@item.Salon.SalonNo</td>
+                <td>@item.SeansSilindi</td>
                 <td>
                     <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.SeansId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><i class="fas fa-trash"></i></button>
                 </td>

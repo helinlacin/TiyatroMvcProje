@@ -1,5 +1,5 @@
 ﻿@using EntityLayer;
-@model OyunSalon
+@model SeansOyunveSalonModel
 @{
     ViewData["Title"] = "Guncelle";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -8,17 +8,45 @@
     <h3>Tur Guncelle</h3>
     @using (Html.BeginForm("Guncelle", "Tur", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.TextBoxFor(OyunSalon=>OyunSalon.SeansId,new { @class = "form-control",@name="SeansId",@value="@Model.SeansId",@type="hidden"})
+        @Html.TextBoxFor(OyunSalon=>OyunSalon.SeansModal.SeansId,new { @class = "form-control",@name="SeansId",@value="@Model.SeansId",@type="hidden"})
         @Html.Label("Tarih")
-        @Html.TextBoxFor(OyunSalon=>OyunSalon.Tarih,new { @class = "form-control",@name="Tarih",@value="@Model.Tarih" })
-        @Html.ValidationMessageFor(OyunSalon=>OyunSalon.Tarih,"",new { @class ="text-danger" })
+        @Html.TextBoxFor(OyunSalon=>OyunSalon.SeansModal.Tarih,new { @class = "form-control",@name="Tarih",@value="@Model.Tarih" })
+        @Html.ValidationMessageFor(OyunSalon=>OyunSalon.SeansModal.Tarih,"",new { @class ="text-danger" })
         <br/>
         @Html.Label("Saat")
-        @Html.TextBoxFor(OyunSalon=>OyunSalon.Saat,new { @class = "form-control",@name="Saat",@value="@Model.Saat" })
-        @Html.ValidationMessageFor(OyunSalon=>OyunSalon.Saat,"",new { @class ="text-danger" })
+        @Html.TextBoxFor(OyunSalon=>OyunSalon.SeansModal.Saat,new { @class = "form-control",@name="Saat",@value="@Model.Saat" })
+        @Html.ValidationMessageFor(OyunSalon=>OyunSalon.SeansModal.Saat,"",new { @class ="text-danger" })
+        <br/>
+        <select class="form-control" name="OyunId">
+            @foreach(var item in Model.OyunModal)
+            {
+                @if(item.OyunId==Model.SeansModal.OyunId)
+                {
+                    <option value="@item.OyunId" selected>@item.OyunAd</option>
+                }
+                else
+                {
+                    <option value="@item.OyunId">@item.OyunAd</option>
+                }
+            }
+            </select>
+            <br/>
+        <select class="form-control" name="SalonId">
+            @foreach (var item in Model.SalonModal)
+            {
+                @if (item.SalonId == Model.SeansModal.SalonId)
+                {
+                    <option value="@item.SalonId" selected>@item.SalonNo</option>
+                }
+                else
+                {
+                    <option value="@item.SalonId">@item.SalonNo</option>
+                }
+            }
+        </select>
         @Html.Label("Durum")
         <select class="form-control" name="SeansSilindi">
-            @if (Model.SeansSilindi)
+            @if (Model.SeansModal.SeansSilindi)
             {
                 <option value="True" selected>True</option>
                 <option value="False">False</option>

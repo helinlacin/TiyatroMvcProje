@@ -1,5 +1,5 @@
 ﻿@using EntityLayer;
-@model OyunSalon;
+@model SeansOyunveSalonModel;
 @{
     ViewData["Title"] = "Ekle";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -10,13 +10,29 @@
     @using (Html.BeginForm("Ekle", "OyunSalon", FormMethod.Post, new { @class = "form-group" }))
     {
         @Html.Label("Tarih")
-        @Html.TextBoxFor(OyunSalon=>OyunSalon.Tarih,new { @class = "form-control" })
-        @Html.ValidationMessageFor(OyunKadrosu=>OyunKadrosu.Tarih,"",new { @class ="text-danger" })
+        @Html.TextBoxFor(OyunSalon=>OyunSalon.SeansModal.Tarih,new { @class = "form-control" })
+        @Html.ValidationMessageFor(OyunKadrosu=>OyunKadrosu.SeansModal.Tarih,"",new { @class ="text-danger" })
         <br />
         @Html.Label("Saat")
-        @Html.TextBoxFor(OyunSalon=>OyunSalon.Saat,new { @class = "form-control" })
-        @Html.ValidationMessageFor(OyunSalon=>OyunSalon.Saat,"",new { @class ="text-danger" })
+        @Html.TextBoxFor(OyunSalon=>OyunSalon.SeansModal.Saat,new { @class = "form-control" })
+        @Html.ValidationMessageFor(OyunSalon=>OyunSalon.SeansModal.Saat,"",new { @class ="text-danger" })
         <br />
+        <br />
+        @Html.Label("OyunAdı")
+        <select class="form-control" name="OyunId">
+            @foreach (var item in Model.OyunModal)
+            {
+                <option value="@item.OyunId">@item.OyunAd</option>
+            }
+        </select>
+        <br />
+        @Html.Label("SalonNo")
+        <select class="form-control" name="SalonId">
+            @foreach (var item in Model.SalonModal)
+            {
+                <option value="@item.SalonId">@item.SalonNo</option>
+            }
+        </select>
         @Html.Label("Durum")
         <select class="form-control" name="silindi">
             <option>False</option>
