@@ -6,34 +6,35 @@ using TiyatroProje.Models;
 
 namespace TiyatroProje.Controllers
 {
-    public class MenuController : Controller
+    public class menuController : Controller
     {
-        MenuManager menuManager = new MenuManager(new EfMenuRepository());
+        MenuManager menuManager=new MenuManager(new EfMenuRepository());  
         public IActionResult Index()
         {
-            return View();
+            var menus = menuManager.menuListele();
+            return View(menus);
         }
         public IActionResult sil(int id)
         {
-            var menu = menuManager.MenuGetirById(id);
-            menu.Menusilindi = true;
-            menuManager.MenuGuncelle(menu);
+            var menu = menuManager.menuGetirById(id);
+            menu.MenuSilindi = true;
+            menuManager.menuGuncelle(menu);
             return RedirectToAction("index");
         }
         [HttpGet]
-        public IActionResult guncelle(int id)
+        public IActionResult Guncelle(int id)
         {
-            var menu = menuManager.MenuGetirById(id);
-            var menulist = menuManager.MenuListele();
+            var menu = menuManager.menuGetirById(id);
+            var menulist = menuManager.menuListele();
             MenuParentListModel menuParentListModel = new MenuParentListModel();
             menuParentListModel.MenuListModel = menulist;
             menuParentListModel.MenuModel = menu;
             return View(menuParentListModel);
         }
         [HttpPost]
-        public IActionResult guncelle(Menu menu)
+        public IActionResult Guncelle(Menu menu)
         {
-            menuManager.MenuGuncelle(menu);
+            menuManager.menuGuncelle(menu);
             return RedirectToAction("Index");
 
         }
@@ -41,25 +42,25 @@ namespace TiyatroProje.Controllers
         public IActionResult ekle()
         {
 
-            var menulist = menuManager.MenuListele();
+            var menulist = menuManager.menuListele();
             MenuParentListModel menuParentListModel = new MenuParentListModel();
             menuParentListModel.MenuListModel = menulist;
             menuParentListModel.MenuModel = new Menu();
             return View(menuParentListModel);
         }
         [HttpPost]
-        public IActionResult ekle(Menu menu)
+        public IActionResult Ekle(Menu menu)
         {
-            var sonuc = menuManager.MenuGetirBySeoUrl(menu.SeoUrl);
+            var sonuc = menuManager.menuGetirBySeoUrl(menu.seoUrl);
             if (sonuc != null)
             {
-                var menulist = menuManager.MenuListele();
+                var menulist = menuManager.menuListele();
                 MenuParentListModel menuParentListModel = new MenuParentListModel();
                 menuParentListModel.MenuListModel = menulist;
                 menuParentListModel.MenuModel = new Menu();
                 return View(menuParentListModel);
             }
-            menuManager.MenuEkle(menu);
+            menuManager.menuEkle(menu);
             return RedirectToAction("Index");
         }
     }
