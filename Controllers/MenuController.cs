@@ -6,7 +6,7 @@ using TiyatroProje.Models;
 
 namespace TiyatroProje.Controllers
 {
-    public class menuController : Controller
+    public class MenuController : Controller
     {
         MenuManager menuManager=new MenuManager(new EfMenuRepository());  
         public IActionResult Index()
