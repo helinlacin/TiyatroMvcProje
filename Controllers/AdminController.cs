@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Text;
 using XSystem.Security.Cryptography;
+using NToastNotify;
 
 namespace TiyatroProje.Controllers
 {
