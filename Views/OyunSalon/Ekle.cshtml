@@ -1,4 +1,4 @@
-﻿@using EntityLayer;
+﻿@using TiyatroProje.Models;
 @model SeansOyunveSalonModel;
 @{
     ViewData["Title"] = "Ekle";
@@ -17,14 +17,14 @@
         @Html.TextBoxFor(OyunSalon=>OyunSalon.SeansModal.Saat,new { @class = "form-control" })
         @Html.ValidationMessageFor(OyunSalon=>OyunSalon.SeansModal.Saat,"",new { @class ="text-danger" })
         <br />
-        <br />
-        @Html.Label("OyunAdı")
+         @Html.Label("OyunAdı")
         <select class="form-control" name="OyunId">
             @foreach (var item in Model.OyunModal)
             {
                 <option value="@item.OyunId">@item.OyunAd</option>
             }
         </select>
+       
         <br />
         @Html.Label("SalonNo")
         <select class="form-control" name="SalonId">

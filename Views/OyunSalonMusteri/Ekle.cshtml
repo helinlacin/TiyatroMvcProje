@@ -1,5 +1,5 @@
-﻿@using EntityLayer;
-@model OyunSalonMusteri
+﻿@using TiyatroProje.Models;
+@model BiletSeansMusteriModel
 @{
     ViewData["Title"] = "Ekle";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -9,9 +9,32 @@
     @using (Html.BeginForm("Ekle", "OyunSalonMusteri", FormMethod.Post, new { @class = "form-group" }))
     {
         @Html.Label("Koltuk No")
-        @Html.TextBoxFor(OyunSalonMusteri=>OyunSalonMusteri.KoltukNo,new { @class = "form-control" })
-        @Html.ValidationMessageFor(OyunSalonMusteri=>OyunSalonMusteri.KoltukNo,"",new { @class ="text-danger" })
-        
+        @Html.TextBoxFor(OyunSalonMusteri=>OyunSalonMusteri.BiletModal.KoltukNo,new { @class = "form-control" })
+        @Html.ValidationMessageFor(OyunSalonMusteri=>OyunSalonMusteri.BiletModal.KoltukNo,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Tarih")
+        <select class="form-control" name="SeansId">
+            @foreach (var item in Model.SeansModal)
+            {
+                <option value="@item.SeansId">@item.Tarih</option>
+            }
+        </select>
+        <br />
+        @Html.Label("Saat")
+        <select class="form-control" name="SeansId">
+            @foreach (var item in Model.SeansModal)
+            {
+                <option value="@item.SeansId">@item.Saat</option>
+            }
+        </select>
+        <br />
+        @Html.Label("KullanıcıAd")
+        <select class="form-control" name="MusteriId">
+            @foreach (var item in Model.MusteriModal)
+            {
+                <option value="@item.MusteriId">@item.KullaniciAd</option>
+            }
+        </select>
         @Html.Label("Durum")
         <select class="form-control" name="silindi">
             <option>False</option>
