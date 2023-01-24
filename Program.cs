@@ -1,8 +1,28 @@
- var builder = WebApplication.CreateBuilder(args);
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using NToastNotify;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
 
+builder.Services.AddControllersWithViews();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
+    AddCookie(options => { options.LoginPath = "/Admin/login"; });
+builder.Services.AddControllers(config =>
+{
+    var policy = new AuthorizationPolicyBuilder()
+                     .RequireAuthenticatedUser()
+                     .Build();
+    config.Filters.Add(new AuthorizeFilter(policy));
+});
+
+builder.Services.AddRazorPages().AddNToastNotifyNoty(new NotyOptions
+{
+    ProgressBar = true,
+    Timeout = 5000
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -17,8 +37,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();//eklediðimiz
+app.UseAuthorization();//varsayýlan gelen
 
-app.UseAuthorization();
 
 app.MapControllerRoute(
 	name: "default",
