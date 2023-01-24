@@ -1,9 +1,7 @@
-﻿
-@{
-    ViewData["Title"] = "login";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+﻿@{
+    Layout = null;
+    var data = TempData["init"];
 }
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,6 +27,11 @@
 
 <body class="bg-gradient-primary">
 
+    @if (@data != null && (int)@data == 1)
+    {
+        TempData["init"] = 0;
+        @await Component.InvokeAsync("NToastNotify")
+    }
     <div class="container">
 
         <!-- Outer Row -->
