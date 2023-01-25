@@ -21,7 +21,7 @@ namespace TiyatroProje.Controllers
 
 		public IActionResult Index()
 		{
-			var menus = x.Menuler.Tol
+            var menus=x.Menu.ToList();
             var mappedTree = mapListToTreview(menus);
             MenuTiyatroSliderModel msmodel = new MenuTiyatroSliderModel();
             TiyatroSliderManager sm = new TiyatroSliderManager(new EfTiyatroSliderRepository());
