@@ -7,16 +7,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllersWithViews();
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
-    AddCookie(options => { options.LoginPath = "/Admin/login"; });
-builder.Services.AddControllers(config =>
-{
-    var policy = new AuthorizationPolicyBuilder()
-                     .RequireAuthenticatedUser()
-                     .Build();
-    config.Filters.Add(new AuthorizeFilter(policy));
-});
+//builder.Services.AddControllersWithViews();
+//builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
+//    AddCookie(options => { options.LoginPath = "/Admin/login"; });
+//builder.Services.AddControllers(config =>
+//{
+//    var policy = new AuthorizationPolicyBuilder()
+//                     .RequireAuthenticatedUser()
+//                     .Build();
+//    config.Filters.Add(new AuthorizeFilter(policy));
+//});
 
 builder.Services.AddRazorPages().AddNToastNotifyNoty(new NotyOptions
 {
