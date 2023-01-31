@@ -1,10 +1,28 @@
 ﻿@using EntityLayer;
+@using TiyatroProje.PagedList;
 @model List<Oyun>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var pager = (Pager)ViewBag.pager;
+    var searchText = ViewBag.searchText;
 }
+@section searchbar{
+    <!-- Topbar Search -->
+    <form asp-controller="Oyun" asp-action="Index" class="d-none d-sm-inline-block form-inline mr-auto md-3 my-md-0 mw-100 navbar-search">
+        <div class="input-group ms-3">
+            <input type="text" name="searchText" class="form-control border-0 small" value="@searchText" placeholder="Oyun Ara"
+               aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-light" type="submit">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    }
 
 <table class="table">
     <thead>
@@ -46,7 +64,10 @@
 <div class="text-center d-flex justify-content-start p-2">
     <a href="/Oyun/Ekle" class="btn btn-success"><ion-icon name="add" style=" font-size:30px;"></ion-icon></a>
 </div>
-
+<div id="ListContainer" style="color:white;display:inline-block;position:relative;top:50%;left:50%;transform:translate(-50%,-50%);">
+    @*<partial name="partialview" model="@Model" />*@
+    <partial name="partialcustomerpager" model="@pager" />
+</div>
 
 <!-- Modal -->
 @*#decisionPopup Model*@
