@@ -41,8 +41,51 @@ app.UseAuthentication();//eklediðimiz
 app.UseAuthorization();//varsayýlan gelen
 
 
-app.MapControllerRoute(
-	name: "default",
-	pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+
+    endpoints.MapControllerRoute(name: "musteri",
+    pattern: "Musteri/Listele",
+    defaults: new { controller = "Musteri", action = "Index" });
+
+    endpoints.MapControllerRoute(name: "menu",
+   pattern: "Menu/listele",
+   defaults: new { controller = "Menu", action = "Index" });
+
+
+    endpoints.MapControllerRoute(name: "oyun",
+   pattern: "Oyun/listele",
+   defaults: new { controller = "Oyun", action = "Index" });
+
+
+    endpoints.MapControllerRoute(name: "oyunkadrosu",
+   pattern: "OyunKadrosu/listele",
+   defaults: new { controller = "OyunKadrosu", action = "Index" });
+
+
+    endpoints.MapControllerRoute(name: "oyunsalon",
+   pattern: "Seans/listele",
+   defaults: new { controller = "OyunSalon", action = "Index" });
+
+
+    endpoints.MapControllerRoute(name: "oyunsalonmusteri",
+   pattern: "Bilet/listele",
+   defaults: new { controller = "OyunSalonMusteri", action = "Index" });
+
+
+    endpoints.MapControllerRoute(name: "salon",
+   pattern: "Salon/listele",
+   defaults: new { controller = "Salon", action = "Index" });
+
+
+    endpoints.MapControllerRoute(name: "tur",
+   pattern: "Tur/listele",
+   defaults: new { controller = "Tur", action = "Index" });
+
+});
 
 app.Run();

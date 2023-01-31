@@ -95,7 +95,7 @@ a {
     padding: 0px;
     margin: 0px;
     width: 100%;
-    border:1px solid blue;
+   
 }
 .site-navigation {
     padding: 0px;
@@ -111,7 +111,7 @@ a {
 .site-logo {
     padding: 0px;
     margin: 0px;
-    border: 1px solid red;
+    
 }
 .site-navbar .site-logo a {
     font-weight: 200;
@@ -119,7 +119,6 @@ a {
     font-size: 20px;
     font-weight: bold;
     text-transform: uppercase;
-    border: 1px solid blue;
     display: inline-block;
     width: 100%;
     text-align: center;
@@ -141,7 +140,7 @@ a {
      ul {
         margin: 0px;
         padding: 0px;
-        border:1px solid white;
+        
      }
 .site-navbar .site-navigation .site-menu > li > a {
     text-align: center;
