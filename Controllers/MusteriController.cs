@@ -36,7 +36,7 @@ namespace TiyatroProje.Controllers
             ViewBag.pager = pager;
             ViewBag.searchText = searchText;
             ViewBag.contrName = "Musteri";
-            ViewBag.actionName = "Listele";
+            ViewBag.actionName = "listele";
             return View(data);
 
 

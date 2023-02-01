@@ -49,7 +49,7 @@ app.UseEndpoints(endpoints =>
         pattern: "{controller=Home}/{action=Index}/{id?}");
 
     endpoints.MapControllerRoute(name: "musteri",
-    pattern: "Musteri/Listele",
+    pattern: "Musteri/listele",
     defaults: new { controller = "Musteri", action = "Index" });
 
     endpoints.MapControllerRoute(name: "menu",

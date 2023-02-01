@@ -1,18 +1,42 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.Validation;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
+using TiyatroProje.PagedList;
 
 namespace TiyatroProje.Controllers
 {
     public class TurController : Controller
     {
         TurManager tm = new TurManager(new EfTurRepository());
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, string searchText = "")
         {
-            var Tur = tm.TurListele();
-            return View(Tur);
+            int pageSize = 2;
+            Context t = new Context();
+            Pager pager;
+            List<Tur> data;
+            var itemCounts = 0;
+            if(searchText != "" && searchText != null)
+            {
+                data=t.Türler.Where(tur=>tur.TurAd.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts= t.Türler.Where(tur=>tur.TurAd.Contains(searchText)).ToList().Count;    
+            }
+            else
+            {
+                data = t.Türler.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = t.Türler.ToList().Count;
+            }
+
+            pager = new Pager(itemCounts, pageSize, page);
+            ViewBag.pager = pager;
+            ViewBag.searchText = searchText;
+            ViewBag.contrName = "Tur";
+            ViewBag.actionName = "listele";
+            return View(data);
+            //var Tur = tm.TurListele();
+            //return View(Tur);
         }
         [HttpGet]
         public IActionResult Ekle()

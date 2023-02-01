@@ -1,8 +1,10 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.Validation;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
+using TiyatroProje.PagedList;
 
 namespace TiyatroProje.Controllers
 {
@@ -11,6 +13,8 @@ namespace TiyatroProje.Controllers
         OyunKadrosuManager okm = new OyunKadrosuManager(new EfOyunKadrosuRepository());
         public IActionResult Index()
         {
+
+
             var oyunkadrosu = okm.OyunKadrosuListele();
             return View(oyunkadrosu);
         }
