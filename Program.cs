@@ -86,6 +86,10 @@ app.UseEndpoints(endpoints =>
    pattern: "Tur/listele",
    defaults: new { controller = "Tur", action = "Index" });
 
+    endpoints.MapControllerRoute(name: "tiyatroslider",
+   pattern: "TiyatroSlider/listele",
+   defaults: new { controller = "TiyatroSlider", action = "Index" });
+
 });
 
 app.Run();
