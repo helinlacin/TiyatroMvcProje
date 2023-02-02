@@ -1,19 +1,45 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.Validation;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using TiyatroProje.PagedList;
 
 namespace TiyatroProje.Controllers
 {
     public class OyunSalonController : Controller
     {
         OyunSalonManager osm = new OyunSalonManager(new EfOyunSalonRepository());
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, string searchText = "")
         {
-            var oyunsalon = osm.SeansListele();
-            return View(oyunsalon);
+            int pageSize = 2;
+            Context os = new Context();
+            Pager pager;
+            List<OyunSalon> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data=os.Seanslar.Where(seanslar=>seanslar.Saat.Contains(searchText) || seanslar.Tarih.ToString().Contains(searchText)
+                ).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts=os.Seanslar.Where(seanslar => seanslar.Saat.Contains(searchText) || seanslar.Tarih.ToString().Contains(searchText)
+                ).ToList().Count;
+            }
+            else
+            {
+                data = os.Seanslar.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = os.Seanslar.ToList().Count;
+            }
+            pager = new Pager(itemCounts, pageSize, page);
+            ViewBag.pager = pager;
+            ViewBag.searchText = searchText;
+            ViewBag.contrName = "OyunSalon";
+            ViewBag.actionName = "listele";
+            return View(data);
+
+            //var oyunsalon = osm.SeansListele();
+            //return View(oyunsalon);
         }
         [HttpGet]
         public IActionResult Ekle()

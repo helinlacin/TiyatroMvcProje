@@ -38,7 +38,7 @@ namespace TiyatroProje.Controllers
             ViewBag.pager = pager;
             ViewBag.searchText = searchText;
             ViewBag.contrName = "Oyun";
-            ViewBag.actionName = "Listele";
+            ViewBag.actionName = "listele";
             return View(data);
             //var oyunlar = om.OyunListele();
             //return View(oyunlar);

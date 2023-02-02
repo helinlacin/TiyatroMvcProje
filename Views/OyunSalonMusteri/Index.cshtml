@@ -1,8 +1,11 @@
 ﻿@using EntityLayer;
+@using TiyatroProje.PagedList;
 @model List<OyunSalonMusteri>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var pager = (Pager)ViewBag.pager;
+    var searchText = ViewBag.searchText;
 }
 
 
