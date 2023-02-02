@@ -1,18 +1,42 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.Validation;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
+using TiyatroProje.PagedList;
 
 namespace TiyatroProje.Controllers
 {
     public class OyunSalonMusteriController : Controller
     {
         OyunSalonMusteriManager blt = new OyunSalonMusteriManager(new EfOyunSalonMusteriRepository());
-        public IActionResult Index()
+        public IActionResult Index(int page=1, string searchText = "")
         {
-            var OyunSalonMusteri = blt.BiletListele();
-            return View(OyunSalonMusteri);
+            int pageSize = 2;
+            Context blt = new Context();
+            Pager pager;
+            List<OyunSalonMusteri> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data=blt.Biletler.Where(biletler=>biletler.KoltukNo.Contains(searchText)
+                ).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = blt.Biletler.Where(biletler => biletler.KoltukNo.Contains(searchText)).ToList().Count();
+            }
+            else
+            {
+                data = blt.Biletler.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = blt.Biletler.ToList().Count;
+            }
+            pager = new Pager(itemCounts, pageSize, page);
+            ViewBag.pager = pager;
+            ViewBag.searchText = searchText;
+            ViewBag.contrName = "OyunSalonMusteri";
+            ViewBag.actionName = "listele";
+            return View(data);
+            //var OyunSalonMusteri = blt.BiletListele();
+            //return View(OyunSalonMusteri);
         }
         [HttpGet]
         public IActionResult Ekle()
